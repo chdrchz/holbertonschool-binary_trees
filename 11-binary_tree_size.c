@@ -6,9 +6,14 @@
  **/
 size_t binary_tree_size_recursive(const binary_tree_t *current)
 {
-	if (current == NULL || current->parent == NULL)
+	size_t leftSize = 0;
+	size_t rightSize = 0;
+	
+	if (current == NULL)
 		return (0);
-	return (1 + binary_tree_size_recursive(current->parent));
+	leftSize = binary_tree_size_recursive(current->left);
+	rightSize = binary_tree_size_recursive(current->right);
+	return (1 + leftSize + rightSize);
 }
 
 /**
