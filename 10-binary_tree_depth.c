@@ -8,12 +8,21 @@
  **/
 size_t binary_tree_depth(const binary_tree_t *tree)
 {
-	size_t leftDepth = 0;
-	size_t rightDepth = 0;
-	
 	if (tree == NULL)
 		return (0);
-	leftDepth = binary_tree_depth(tree->left);
-	rightDepth = binary_tree_depth(tree->right);
-	return (leftDepth > rightDepth) ? (leftDepth + 1) : (rightDepth + 1);
+	return (binary_tree_depth_recursive(tree));
+}
+
+/**
+ * binary_tree_depth_recursive - recursively finds depth of tree
+ *
+ * @current: current node to check depth
+ * Return: On Success: depth of tree
+ * On Failure: 0
+ **/
+size_t binary_tree_depth_recursive(const binary_tree_t *current)
+{
+	if (current == NULL || current->parent == NULL)
+		return (0);
+	return (1 + binary_tree_depth_recursive(current->parent));
 }
